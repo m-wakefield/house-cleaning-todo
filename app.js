@@ -1,38 +1,58 @@
-// Default cleaning tasks
+// Default cleaning tasks with optional subtasks
 const defaultTasks = [
-    "Cole's Laundry",
-    "Kane's Laundry",
-    "Bathroom (hallway)",
-    "Bathroom (bedroom)",
-    "Mop",
-    "Sweep",
-    "Cat litter boxes",
-    "Dust bookcases",
-    "Clean baseboards and wall",
-    "clean ceiling fans",
-    "Clean dishes"
+    { label: "Cole's Laundry" },
+    { label: "Kane's Laundry" },
+    { label: "Bathroom (hallway)", subtasks: ["mirrors", "sinks", "bathtub", "floors"] },
+    { label: "Bathroom (bedroom)", subtasks: ["mirrors", "sinks", "bathtub", "floors"] },
+    { label: "Mop", subtasks: ["living room", "kitchen", "laundry room", "office"] },
+    { label: "Sweep", subtasks: ["living room", "kitchen", "laundry room", "office"] },
+    { label: "Cat litter boxes" },
+    { label: "Dust bookcases" },
+    { label: "Clean baseboards and wall", subtasks: ["living room", "kitchen", "laundry room", "office"] },
+    { label: "clean ceiling fans", subtasks: ["living room", "kitchen", "bedrooms", "office"] },
+    { label: "Clean dishes" }
   ];
   
-  // Create a new task element with text and delete button
-  function createTaskElement(taskText) {
+  // Helper: Create a subtask element without a delete button
+  function createSubTaskElement(subtaskText) {
     const li = document.createElement('li');
+    li.classList.add('subtask-item');
   
-    // Create span for task text
     const span = document.createElement('span');
-    span.textContent = taskText;
+    // Prepend a dash to indicate it's a micro-label
+    span.textContent = "- " + subtaskText;
     span.onclick = () => {
       span.classList.toggle('done');
     };
   
-    // Create a delete button
-    const deleteBtn = document.createElement('button');
-    deleteBtn.textContent = 'Delete';
-    deleteBtn.onclick = () => {
-      li.parentNode.removeChild(li);
+    li.appendChild(span);
+    return li;
+  }
+  
+  // Helper: Create a main task element (with optional subtasks) without a delete button
+  function createTaskElement(task) {
+    const li = document.createElement('li');
+  
+    // Create span for main task label
+    const span = document.createElement('span');
+    span.textContent = task.label;
+    span.onclick = () => {
+      span.classList.toggle('done');
     };
   
     li.appendChild(span);
-    li.appendChild(deleteBtn);
+  
+    // If subtasks exist, create a nested list
+    if (task.subtasks && Array.isArray(task.subtasks)) {
+      const subList = document.createElement('ul');
+      subList.classList.add('subtask-list');
+      task.subtasks.forEach(subtask => {
+        const subLi = createSubTaskElement(subtask);
+        subList.appendChild(subLi);
+      });
+      li.appendChild(subList);
+    }
+  
     return li;
   }
   
@@ -45,17 +65,21 @@ const defaultTasks = [
     });
   }
   
+  // Add a new task (as a simple task without subtasks)
   function addTask() {
     const taskInput = document.getElementById('new-task');
     const taskText = taskInput.value.trim();
     if (taskText === '') return;
   
     const taskList = document.getElementById('task-list');
-    const li = createTaskElement(taskText);
+    // Create a task object without subtasks
+    const task = { label: taskText };
+    const li = createTaskElement(task);
     taskList.appendChild(li);
     taskInput.value = '';
   }
   
+  // Clear all tasks from the list
   function clearTasks() {
     const taskList = document.getElementById('task-list');
     taskList.innerHTML = '';
