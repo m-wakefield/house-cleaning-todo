@@ -47,10 +47,13 @@ body {
     margin: 5px 0;
     padding: 10px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  }
+  
+  li > span {
+    cursor: pointer;
   }
   
   .done {
@@ -58,7 +61,22 @@ body {
     color: grey;
   }
   
-  /* Additional styling for the Clear All button */
+  /* Styling for nested subtasks */
+  .subtask-list {
+    list-style: none;
+    padding-left: 20px;
+    margin-top: 10px;
+  }
+  
+  .subtask-item {
+    display: flex;
+    justify-content: space-between;
+    background: #f9f9f9;
+    margin: 3px 0;
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
+  
   #clear-all {
     margin-top: 20px;
     background-color: #d9534f;
