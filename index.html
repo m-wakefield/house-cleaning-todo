@@ -8,11 +8,34 @@
 </head>
 <body>
   <h1>House Cleaning To Do List</h1>
+  
+  <!-- Input for adding a new task -->
   <div class="input-container">
     <input type="text" id="new-task" placeholder="New cleaning task...">
+    <select id="task-category">
+      <option value="daily">Daily</option>
+      <option value="weekly">Weekly</option>
+      <option value="monthly">Monthly</option>
+    </select>
     <button onclick="addTask()">Add Task</button>
   </div>
-  <ul id="task-list"></ul>
+
+  <!-- Sections for each category -->
+  <section>
+    <h2>Daily Tasks</h2>
+    <ul id="daily-task-list"></ul>
+  </section>
+  
+  <section>
+    <h2>Weekly Tasks</h2>
+    <ul id="weekly-task-list"></ul>
+  </section>
+  
+  <section>
+    <h2>Monthly Tasks</h2>
+    <ul id="monthly-task-list"></ul>
+  </section>
+
   <button id="clear-all" onclick="clearTasks()">Clear All</button>
   <script src="app.js"></script>
 </body>

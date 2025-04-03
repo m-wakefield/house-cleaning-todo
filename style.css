@@ -7,7 +7,7 @@ body {
     align-items: center;
   }
   
-  h1 {
+  h1, h2 {
     text-align: center;
   }
   
@@ -16,11 +16,17 @@ body {
   }
   
   #new-task {
-    width: 70%;
+    width: 60%;
     padding: 10px;
     margin-right: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+  }
+  
+  select {
+    padding: 10px;
+    border-radius: 4px;
+    margin-right: 10px;
   }
   
   button {
@@ -36,23 +42,22 @@ body {
     background-color: #468ad4;
   }
   
+  section {
+    width: 80%;
+    margin-bottom: 30px;
+  }
+  
   ul {
     list-style: none;
     padding: 0;
-    width: 80%;
   }
   
   li {
     background: #fff;
     margin: 5px 0;
     padding: 10px;
-    display: flex;
-    flex-direction: column;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0,0,0,0.1);
-  }
-  
-  li > span {
     cursor: pointer;
   }
   
@@ -69,8 +74,6 @@ body {
   }
   
   .subtask-item {
-    display: flex;
-    justify-content: space-between;
     background: #f9f9f9;
     margin: 3px 0;
     padding: 5px 10px;
