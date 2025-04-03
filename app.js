@@ -11,6 +11,14 @@ const defaultTasks = [
     { label: "Clean baseboards and wall", subtasks: ["living room", "kitchen", "laundry room", "office"] },
     { label: "clean ceiling fans", subtasks: ["living room", "kitchen", "bedrooms", "office"] },
     { label: "Clean dishes" }
+    { label: "Mowing", subtasks: ["front yard", "back yard"] }
+    { label: "Clean carpets",  subtasks:  ["living room", "bedrooms"] },
+    { label: "Shampoo carpets", subtasks: ["living room", "bedrooms"] },
+    { label: "Clean kitchen countertops" },
+    { label: "Clean washing machine" },
+    { label: "Clean refrigerator" },
+    { label: "Clean windows" },
+    { label: "Clean curtains" },
   ];
   
   // Helper: Create a subtask element without a delete button
